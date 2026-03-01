@@ -398,6 +398,92 @@ body {
 .timeline::before { content: ''; position: absolute; left: 10px; top: 0; bottom: 0; width: 2px; background: var(--border); }
 .timeline-dot { position: absolute; left: 4px; width: 14px; height: 14px; border-radius: 50%; border: 2px solid var(--card); }
 .timeline-item { position: relative; margin-bottom: 12px; padding-left: 16px; }
+
+/* Warning cards */
+.warning-card {
+  background: var(--card);
+  border-radius: 14px;
+  border: 1px solid var(--border);
+  border-left: 4px solid #ef4444;
+  padding: 16px 18px;
+  margin-bottom: 14px;
+  box-shadow: 0 2px 8px rgba(15,23,42,0.04);
+}
+.warning-card.amber { border-left-color: #f59e0b; }
+.warning-card.red { border-left-color: #ef4444; }
+.warning-title {
+  font-size: 14px;
+  font-weight: 700;
+  margin: 0 0 8px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.warning-title .tag {
+  font-size: 11px;
+  padding: 2px 8px;
+  border-radius: 4px;
+  font-weight: 600;
+}
+.tag-high { background: #fee2e2; color: #991b1b; }
+.tag-medium { background: #fef3c7; color: #92400e; }
+.tag-low { background: #f1f5f9; color: #475569; }
+.warning-body {
+  font-size: 13px;
+  line-height: 1.7;
+  color: var(--text);
+}
+.warning-body .evidence {
+  background: var(--bg);
+  border-radius: 8px;
+  padding: 10px 12px;
+  margin: 8px 0;
+  font-size: 12px;
+  border-left: 3px solid var(--border);
+}
+.warning-body .counter {
+  background: #f0fdf4;
+  border-radius: 8px;
+  padding: 10px 12px;
+  margin: 8px 0;
+  font-size: 12px;
+  border-left: 3px solid #22c55e;
+}
+.warning-summary-box {
+  background: #fff5f5;
+  border: 1px solid #fecaca;
+  border-radius: 12px;
+  padding: 16px;
+  margin-top: 16px;
+}
+.warning-summary-box.neutral {
+  background: #fffbeb;
+  border-color: #fed7aa;
+}
+.pua-meter {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 12px 0;
+}
+.pua-meter-bar {
+  flex: 1;
+  height: 10px;
+  background: var(--border);
+  border-radius: 5px;
+  overflow: hidden;
+}
+.pua-meter-fill {
+  height: 100%;
+  border-radius: 5px;
+  background: linear-gradient(90deg, #fbbf24, #ef4444);
+}
+.pua-meter-label {
+  font-size: 13px;
+  font-weight: 700;
+  color: #92400e;
+  min-width: 40px;
+}
 </style>
   </head>
   <body>
@@ -903,6 +989,237 @@ body {
             </div>
           </div>
 
+        </div>
+
+        <!-- PUA / 操控行为分析 -->
+        <div class="analysis-section">
+          <div class="section-title"><span class="icon">&#9888;&#65039;</span> PUA与操控行为预警分析</div>
+          <div class="trajectory">
+            <div class="trajectory-summary" style="margin-top:0;">
+              以下分析基于聊天记录中Erin的行为模式，识别可能存在的PUA（情感操控）手法。每项分析包含<strong>行为证据、操控解读、善意解读</strong>三个维度，帮助客观判断。
+            </div>
+            <div class="pua-meter">
+              <span style="font-size:13px;color:var(--muted);">操控倾向评估：</span>
+              <div class="pua-meter-bar"><div class="pua-meter-fill" style="width:55%;"></div></div>
+              <span class="pua-meter-label">中高</span>
+            </div>
+          </div>
+
+          <!-- Warning 1 -->
+          <div class="warning-card red">
+            <div class="warning-title">
+              <span>1. 金钱测试 —— "520 vs 5200"</span>
+              <span class="tag tag-high">高风险</span>
+            </div>
+            <div class="warning-body">
+              <p>情人节当晚，Erin直接提出金钱测试："如果昨天给你的情人节的文案是5200不是520 你还会愿意给我转吗"。这不是随意的玩笑，而是一个<strong>精心设计的二元陷阱</strong>——无论George怎么回答都处于被动：</p>
+              <div class="evidence">
+                <strong>证据：</strong><br>
+                &#8226; 直接用金额测试对方的"诚意"<br>
+                &#8226; 将前男友的慷慨作为隐性对比标准<br>
+                &#8226; "你说因为钱给多了分手...我就有点没向往恋人发展" —— 用George自己的话反向施压<br>
+                &#8226; "我一旦谈恋爱就会内耗" —— 提前把未来可能的矛盾责任归于George
+              </div>
+              <p><strong>PUA解读：</strong>这是典型的<strong>"价值筛选"</strong>手法——通过设定高于对方能力的物质标准，让追求者处于持续的"不够好"焦虑中。如果George努力达标，她获得物质利益；如果George达不到，她保留随时以此为理由退出的筹码。这种测试本质上是在建立<strong>不平等的权力关系</strong>。</p>
+              <div class="counter">
+                <strong>善意解读：</strong>Erin确实被NPD前任伤害过，可能在通过这种方式保护自己——她需要确认George不会重蹈覆辙（虽然逻辑上前任的问题是控制而非钱）。她可能只是笨拙地表达安全感需求。
+              </div>
+            </div>
+          </div>
+
+          <!-- Warning 2 -->
+          <div class="warning-card red">
+            <div class="warning-title">
+              <span>2. 推拉术 —— 忽冷忽热的精确控制</span>
+              <span class="tag tag-high">高风险</span>
+            </div>
+            <div class="warning-body">
+              <p>整段聊天中，Erin展现出<strong>极其娴熟的推拉节奏</strong>——给予希望然后撤回，制造情感过山车：</p>
+              <div class="evidence">
+                <strong>证据链：</strong><br>
+                &#8226; "乖哟...那我睡啦" → 然后冷淡几天 <br>
+                &#8226; 主动邀请进闺蜜圈 → 情人节设置金钱门槛<br>
+                &#8226; "万一以后要当我老公呢" → "最差的结果也是一起做朋友啊"<br>
+                &#8226; "要是你那时候已经把我追到手了就不用（订两间房）" → "我现在对你已经彻底感光了"<br>
+                &#8226; 用"宝贝"等亲密称呼 → 突然"我又没说要和你去"<br>
+                &#8226; 每次George冷静接受拒绝后，Erin又主动释放暧昧信号
+              </div>
+              <p><strong>PUA解读：</strong>经典的<strong>"间歇性强化"</strong>——心理学中最容易让人上瘾的奖励模式。通过不可预测的热情和冷淡交替，让George处于持续的<strong>不确定性焦虑</strong>中，越来越依赖Erin偶尔给出的正面反馈。这比完全拒绝更有效——因为每次"温暖"都会强化George继续投入的行为。</p>
+              <div class="counter">
+                <strong>善意解读：</strong>Erin可能确实在纠结——她对George有好感但对进入关系感到恐惧（受前任影响）。矛盾信号可能反映的是真实的内心挣扎而非刻意操控。ESFP性格类型确实倾向于情绪波动和即兴表达。
+              </div>
+            </div>
+          </div>
+
+          <!-- Warning 3 -->
+          <div class="warning-card red">
+            <div class="warning-title">
+              <span>3. 前任对比 —— 隐性贬低与标准绑架</span>
+              <span class="tag tag-high">高风险</span>
+            </div>
+            <div class="warning-body">
+              <p>Erin详细描述前任的慷慨行为，表面上是"分享过去"，实际效果是<strong>设定George必须追赶的隐形标杆</strong>：</p>
+              <div class="evidence">
+                <strong>证据：</strong><br>
+                &#8226; "他一直请我朋友吃饭 让我带上我朋友"<br>
+                &#8226; "他就说请她们吃饭只是想让我朋友更照顾我一点"<br>
+                &#8226; "当时哭死了 觉得他太好了"<br>
+                &#8226; 然后才补充 "他纯纯npd了后面" —— 先建立高标准再否定人品<br>
+                &#8226; "我在还没有自己养活自己能力的时候 就能遇到这样的 等我有能力了 一定会遇到更好的"
+              </div>
+              <p><strong>PUA解读：</strong>这是<strong>"锚定效应"</strong>的应用——通过描述前任的高消费行为，在George心中植入"好男友 = 大方花钱"的等式。她先让George感受到前任的"好"，再说前任是NPD，潜台词是："我需要一个像他一样慷慨但人品更好的人——<strong>你能做到吗？</strong>"这让George陷入"既要证明自己比前任好、又要在物质上追赶前任"的双重困境。</p>
+              <div class="counter">
+                <strong>善意解读：</strong>分享前任经历可能是为了让George理解她的创伤背景和安全感需求。被NPD伤害后讲述经历是常见的心理需求，不一定是刻意对比。
+              </div>
+            </div>
+          </div>
+
+          <!-- Warning 4 -->
+          <div class="warning-card amber">
+            <div class="warning-title">
+              <span>4. 情绪勒索 —— "已经把我气死了"</span>
+              <span class="tag tag-medium">中风险</span>
+            </div>
+            <div class="warning-body">
+              <p>Erin频繁使用强烈的负面情绪表达来施加压力，让George处于<strong>持续的歉疚和讨好状态</strong>：</p>
+              <div class="evidence">
+                <strong>证据：</strong><br>
+                &#8226; "我现在对你已经彻底感光了" —— 以"失去感情"施压<br>
+                &#8226; "你最好是周二可以收动物" —— 命令式语气<br>
+                &#8226; "我怎么能不生气 已经把我气死了" —— 但不说清楚气什么<br>
+                &#8226; "和气的时候也没财" —— 讽刺回击<br>
+                &#8226; "你现在我觉得我要真说了 你不是一气啊" —— 暗示有更严重的话没说，制造悬念和焦虑<br>
+                &#8226; 同时，George始终在道歉、解释、讨好的位置上
+              </div>
+              <p><strong>PUA解读：</strong>这是<strong>"情绪勒索"（FOG: Fear, Obligation, Guilt）</strong>模式——通过制造恐惧（"感光了"）、义务（"你应该做到"）、内疚（"已经把我气死了"）来控制对方行为。关键的操控点在于：<strong>她从不清晰说明自己的具体需求</strong>，而是让George在迷雾中反复猜测和自我审视。这让George永远处于"不知道自己哪里做错了"的焦虑中。</p>
+              <div class="counter">
+                <strong>善意解读：</strong>Erin可能确实在生气，只是不擅长用建设性方式表达。"说不出来"可能是因为她自己也没整理清楚感受，而非故意含糊。年轻人在处理情感冲突时往往缺乏成熟的沟通技巧。
+              </div>
+            </div>
+          </div>
+
+          <!-- Warning 5 -->
+          <div class="warning-card amber">
+            <div class="warning-title">
+              <span>5. 框架控制 —— 关系定义权的垄断</span>
+              <span class="tag tag-medium">中风险</span>
+            </div>
+            <div class="warning-body">
+              <p>在整段关系中，Erin始终掌握着<strong>"我们是什么关系"的定义权</strong>——George只能被动等待裁决：</p>
+              <div class="evidence">
+                <strong>证据：</strong><br>
+                &#8226; George表白后，Erin掌控回应节奏——不直接拒绝也不接受<br>
+                &#8226; "我们还没聊这个事情呢" —— 她决定什么时候聊、聊什么<br>
+                &#8226; "等聊完这事情再说" —— 一切由她时间表决定<br>
+                &#8226; George提议任何活动都需要经过Erin的"允许"<br>
+                &#8226; George说"做朋友不能叫宝宝"时，Erin回"万一以后要当我老公呢"——用更大的饼来维持模糊状态<br>
+                &#8226; 27条撤回消息（多数来自Erin端）——控制信息暴露程度
+              </div>
+              <p><strong>PUA解读：</strong>这是<strong>"框架控制"</strong>——掌握关系定义权的人拥有所有主动权。George被锁定在"追求者"角色中，只能不断付出并等待Erin的评判。而Erin可以随时以"我们还没在一起"来拒绝George的要求，又可以用暧昧行为维持George的投入。这种<strong>不对等</strong>是PUA的核心特征。</p>
+              <div class="counter">
+                <strong>善意解读：</strong>在追求阶段，被追的一方确实天然拥有更多选择权，这不一定是操控。Erin可能真的需要时间想清楚，而不是故意吊着George。
+              </div>
+            </div>
+          </div>
+
+          <!-- Warning 6 -->
+          <div class="warning-card amber">
+            <div class="warning-title">
+              <span>6. 语音消息的心理优势 —— 单向情绪输出</span>
+              <span class="tag tag-medium">中风险</span>
+            </div>
+            <div class="warning-body">
+              <p>Erin在关键对话中大量使用语音消息，而George主要用文字回复。这不是偶然的：</p>
+              <div class="evidence">
+                <strong>证据：</strong><br>
+                &#8226; 316条语音消息中绝大多数来自Erin<br>
+                &#8226; 在情绪激动时切换到语音（如"彻底感光了"、"你最好收动物"）<br>
+                &#8226; 语音消息让对方必须完整听完，无法像文字一样快速扫读<br>
+                &#8226; 声音的情绪传染力远强于文字——语气中的委屈、愤怒会放大影响<br>
+                &#8226; George被迫用文字回应语音——在情绪表达力上天然处于劣势
+              </div>
+              <p><strong>PUA解读：</strong>语音消息在争论中是一种<strong>"不对称武器"</strong>——发送者可以用语气、停顿、叹气来传递文字无法表达的情绪压力。接收者被迫在高情绪冲击下用冷静的文字回复，容易显得"冷淡"或"不够重视"。这无形中放大了George的"罪恶感"。</p>
+              <div class="counter">
+                <strong>善意解读：</strong>ESFP性格类型确实偏好口头表达而非文字。Erin用语音可能只是因为打字麻烦或者她更习惯说话。不一定是有意利用媒介优势。
+              </div>
+            </div>
+          </div>
+
+          <!-- Warning 7 -->
+          <div class="warning-card amber">
+            <div class="warning-title">
+              <span>7. "画饼"警告的反向画饼</span>
+              <span class="tag tag-medium">中风险</span>
+            </div>
+            <div class="warning-body">
+              <p>Erin对George说"不许给我画饼"，但她自己的行为恰恰在<strong>反向画饼</strong>——给George描绘一个可能永远到达不了的未来：</p>
+              <div class="evidence">
+                <strong>证据：</strong><br>
+                &#8226; "万一以后要当我老公呢" —— 暗示有可能，但永远是"万一"<br>
+                &#8226; "要是你那时候已经把我追到手了" —— 设定模糊的成功条件<br>
+                &#8226; "等聊完这事情再看吧" —— 永远有下一个条件<br>
+                &#8226; "不许画饼" —— 先给George贴上"画饼"标签，让他更不敢质疑Erin的画饼<br>
+                &#8226; 两个月来不断设定新条件，而"追到手"的标准始终不明确
+              </div>
+              <p><strong>PUA解读：</strong>这是<strong>"移动球门柱"（Moving the Goalposts）</strong>——让追求者永远觉得自己"差一点"就能成功。通过给出模糊的希望但不兑现，维持对方持续投入。而"不许画饼"的指控本身就是一种<strong>预防性攻击</strong>——先给George扣帽子，让他不敢指出Erin在做同样的事。</p>
+              <div class="counter">
+                <strong>善意解读：</strong>Erin可能真的在认真考虑，只是自己也不确定想要什么。"不许画饼"可能是她从前任关系中学到的自我保护。她的犹豫可能是真实的而非策略性的。
+              </div>
+            </div>
+          </div>
+
+          <!-- Warning 8 -->
+          <div class="warning-card amber">
+            <div class="warning-title">
+              <span>8. "和气的时候也没财" —— 持续贬低价值</span>
+              <span class="tag tag-medium">中风险</span>
+            </div>
+            <div class="warning-body">
+              <p>在最后一天的对话中，Erin的回应暴露了一个<strong>核心模式</strong>——无论George怎么做，都得到负面评价：</p>
+              <div class="evidence">
+                <strong>证据：</strong><br>
+                &#8226; George生气 → Erin不满<br>
+                &#8226; George不生气 → "什么意思？一个好"<br>
+                &#8226; George耐心 → "你最好收动物"<br>
+                &#8226; George表达关心 → "sorrrrry呀 我怕你觉得看到我会影响休息" 被嘲笑<br>
+                &#8226; George引用"和气生财" → "和气的时候也没财" —— 直接否定他的价值<br>
+                &#8226; George无论做什么都是"不够好"
+              </div>
+              <p><strong>PUA解读：</strong>这是<strong>"持续贬低"（Negging）</strong>的变体——让对方觉得自己无论如何努力都达不到标准，从而更加拼命地证明自己。"和气的时候也没财"是一句极具杀伤力的话——它直接否定了George在关系中一切非物质的付出（耐心、包容、陪伴、情感支持）的价值。言下之意：<strong>你的"好"不值钱。</strong></p>
+              <div class="counter">
+                <strong>善意解读：</strong>Erin可能只是在气头上口不择言，并非真的否定George所有的付出。人在愤怒时容易说出极端的话。
+              </div>
+            </div>
+          </div>
+
+          <!-- Overall PUA Assessment -->
+          <div class="warning-summary-box neutral">
+            <div class="section-title" style="font-size:16px;margin-bottom:12px;"><span class="icon">&#128269;</span> 综合PUA风险评估</div>
+            <div class="chunk-analysis-row">
+              <div class="analysis-box" style="border-left:3px solid #ef4444;">
+                <div class="analysis-box-title">明确的操控模式</div>
+                <p>&#9888; 金钱测试：用具体金额测试"诚意"<br>
+                &#9888; 推拉术：忽冷忽热的精确节奏<br>
+                &#9888; 前任对比：隐性设定不可达标准<br>
+                &#9888; 框架控制：垄断关系定义权<br>
+                &#9888; 移动球门柱：成功条件永远模糊</p>
+              </div>
+              <div class="analysis-box" style="border-left:3px solid #f59e0b;">
+                <div class="analysis-box-title">需要注意的信号</div>
+                <p>&#9888; George始终处于"讨好者"位置<br>
+                &#9888; Erin从未为自己的行为道歉<br>
+                &#9888; 关系投入严重不对等（George主动，Erin筛选）<br>
+                &#9888; 情绪表达只允许Erin单方面发泄<br>
+                &#9888; 两个月来George的情感地位没有实质提升</p>
+              </div>
+            </div>
+            <div class="trajectory-summary" style="background:#fff;padding:16px;border-radius:10px;margin-top:14px;border:1px solid var(--border);">
+              <strong>总评：</strong>Erin的行为模式<strong>客观上符合多项PUA/情感操控特征</strong>，但这不一定意味着她是有意为之。有两种可能性：<br><br>
+              <strong>可能性A（无意识操控）：</strong>Erin在前任关系中学到了这些模式——NPD患者的伴侣往往会无意识地复制对方的某些行为模式（如推拉、情绪勒索、价值贬低）。她可能在"受害者"身份下不自觉地成为了新的施加者。这种情况需要的是心理觉察，不是指责。<br><br>
+              <strong>可能性B（有意识筛选）：</strong>Erin明确知道自己想要什么（经济实力强的伴侣），并且通过暧昧维持George的情感投入，同时保留随时退出的余地。在找到"更好的选择"之前，George扮演了备胎角色。<br><br>
+              <strong>&#128680; 对George的建议：</strong>无论是哪种情况，George都需要<strong>停止单方面迎合</strong>。健康的关系应该是双向付出、标准清晰、情绪对等的。如果周二的对话中Erin仍然只提要求而不做出任何让步或承诺，George应该认真考虑<strong>止损</strong>。爱情不应该是一场永远通不过的考试。
+            </div>
+          </div>
         </div>
 
         <!-- 总结与建议 -->
