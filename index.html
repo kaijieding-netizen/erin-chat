@@ -311,6 +311,47 @@ body {
 </style>
   </head>
   <body>
+    <!-- Password Lock Screen -->
+    <div id="lockScreen" style="position:fixed;inset:0;z-index:9999;background:#f6f7fb;display:flex;align-items:center;justify-content:center;font-family:'PingFang SC','Microsoft YaHei',system-ui,sans-serif;">
+      <div style="background:#fff;border-radius:18px;box-shadow:0 12px 30px rgba(15,23,42,0.08);padding:40px;text-align:center;max-width:360px;width:90%;">
+        <div style="font-size:40px;margin-bottom:16px;">&#128274;</div>
+        <h2 style="margin:0 0 8px;font-size:20px;color:#1f2a37;">需要密码访问</h2>
+        <p style="margin:0 0 24px;color:#6b7280;font-size:14px;">请输入密码以查看内容</p>
+        <input id="pwdInput" type="password" placeholder="输入密码..." style="width:100%;padding:12px 16px;border:1px solid #e5e7eb;border-radius:10px;font-size:15px;font-family:inherit;box-sizing:border-box;outline:none;transition:border-color 0.2s;" onfocus="this.style.borderColor='#4f46e5'" onblur="this.style.borderColor='#e5e7eb'" />
+        <div id="pwdError" style="color:#ef4444;font-size:13px;margin-top:8px;height:20px;"></div>
+        <button id="pwdBtn" style="width:100%;padding:12px;background:#4f46e5;color:#fff;border:none;border-radius:10px;font-size:15px;cursor:pointer;margin-top:8px;font-family:inherit;">确认</button>
+      </div>
+    </div>
+    <script>
+    (function(){
+      var hash='823906db5611beadf7a8e198e623b009aec02a09a447059f17818aab6a452b06';
+      async function sha256(m){var e=new TextEncoder().encode(m);var h=await crypto.subtle.digest('SHA-256',e);return Array.from(new Uint8Array(h)).map(function(b){return b.toString(16).padStart(2,'0')}).join('');}
+      function showContent(){
+        document.getElementById('lockScreen').style.display='none';
+        document.getElementById('mainContent').style.display='';
+      }
+      function unlock(){
+        var p=document.getElementById('pwdInput').value;
+        sha256(p).then(function(h){
+          if(h===hash){
+            showContent();
+            sessionStorage.setItem('erin_unlocked','1');
+          }else{
+            document.getElementById('pwdError').textContent='密码错误，请重试';
+            document.getElementById('pwdInput').value='';
+            document.getElementById('pwdInput').style.borderColor='#ef4444';
+          }
+        });
+      }
+      document.addEventListener('DOMContentLoaded',function(){
+        document.getElementById('pwdBtn').addEventListener('click',unlock);
+        document.getElementById('pwdInput').addEventListener('keydown',function(e){if(e.key==='Enter')unlock();});
+        if(sessionStorage.getItem('erin_unlocked')==='1') showContent();
+      });
+    })();
+    </script>
+
+    <div id="mainContent" style="display:none;">
     <div class="page">
       <div class="header">
         <h1 class="title">陈懿茹Erin 0108 esfp 不吃香菜</h1>
@@ -613,5 +654,6 @@ body {
 
       updateCount()
     </script>
+    </div><!-- end mainContent -->
   </body>
 </html>
