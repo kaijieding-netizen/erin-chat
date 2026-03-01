@@ -399,6 +399,81 @@ body {
 .timeline-dot { position: absolute; left: 4px; width: 14px; height: 14px; border-radius: 50%; border: 2px solid var(--card); }
 .timeline-item { position: relative; margin-bottom: 12px; padding-left: 16px; }
 
+/* Guide cards */
+.guide-card {
+  background: var(--card);
+  border-radius: 14px;
+  border: 1px solid var(--border);
+  margin-bottom: 14px;
+  overflow: hidden;
+  transition: box-shadow 0.2s;
+}
+.guide-card:hover { box-shadow: 0 4px 16px rgba(15,23,42,0.1); }
+.guide-header {
+  padding: 16px 18px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  border-left: 4px solid var(--accent);
+}
+.guide-header.green { border-left-color: #22c55e; }
+.guide-header.blue { border-left-color: #3b82f6; }
+.guide-header.purple { border-left-color: #8b5cf6; }
+.guide-header.amber { border-left-color: #f59e0b; }
+.guide-header.rose { border-left-color: #e11d48; }
+.guide-icon { font-size: 22px; flex-shrink: 0; }
+.guide-title-area { flex: 1; min-width: 0; }
+.guide-title { font-size: 15px; font-weight: 600; margin: 0; }
+.guide-subtitle { font-size: 12px; color: var(--muted); margin-top: 2px; }
+.guide-body { display: none; padding: 0 18px 18px; border-top: 1px solid var(--border); }
+.guide-card.open .guide-body { display: block; padding-top: 16px; }
+.guide-card .chunk-arrow { color: var(--muted); transition: transform 0.2s; flex-shrink: 0; font-size: 16px; }
+.guide-card.open .chunk-arrow { transform: rotate(180deg); }
+
+.do-dont { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin: 10px 0; }
+@media (max-width: 600px) { .do-dont { grid-template-columns: 1fr; } }
+.do-box, .dont-box { border-radius: 10px; padding: 12px; font-size: 13px; line-height: 1.6; }
+.do-box { background: #f0fdf4; border-left: 3px solid #22c55e; }
+.dont-box { background: #fef2f2; border-left: 3px solid #ef4444; }
+.do-box strong, .dont-box strong { display: block; margin-bottom: 4px; font-size: 12px; text-transform: uppercase; letter-spacing: 0.5px; }
+.do-box strong { color: #166534; }
+.dont-box strong { color: #991b1b; }
+
+.script-box {
+  background: var(--bg);
+  border-radius: 10px;
+  padding: 14px;
+  margin: 10px 0;
+  font-size: 13px;
+  line-height: 1.7;
+  border: 1px dashed var(--border);
+}
+.script-label {
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--accent);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 6px;
+}
+.guide-step {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 14px;
+  align-items: flex-start;
+}
+.step-num {
+  width: 28px; height: 28px;
+  border-radius: 50%;
+  background: var(--accent);
+  color: #fff;
+  display: flex; align-items: center; justify-content: center;
+  font-weight: 700; font-size: 13px; flex-shrink: 0;
+  margin-top: 2px;
+}
+.step-content { font-size: 13px; line-height: 1.7; }
+
 /* Warning cards */
 .warning-card {
   background: var(--card);
@@ -1253,6 +1328,289 @@ body {
               <strong>关键点：</strong>Erin的愤怒 = 期望 = 在意。真正放弃的人不会发这么多语音消息。周二的晚饭是<strong>决定性时刻</strong>——成败在此一举。
             </div>
           </div>
+        </div>
+
+        <!-- 实用指南 -->
+        <div class="analysis-section">
+          <div class="section-title"><span class="icon">&#128218;</span> 周二晚饭实战指南 —— 如何引导更有意义的对话与关系</div>
+          <div class="trajectory">
+            <div class="trajectory-summary" style="margin-top:0;">
+              这不是一份"如何让她答应在一起"的攻略，而是一份<strong>如何建立健康、平等、有深度的对话</strong>的指南。无论周二的结果是在一起还是做朋友，以下策略都能帮助你们进行一次真正有意义的沟通。<strong>核心原则：少辩解，多倾听；少承诺，多行动；少讨好，多真诚。</strong>
+            </div>
+          </div>
+
+          <!-- Guide 1: 开场 -->
+          <div class="guide-card">
+            <div class="guide-header green" onclick="toggleChunk(this)">
+              <span class="guide-icon">&#127917;</span>
+              <div class="guide-title-area">
+                <div class="guide-title">第一步：开场 —— 打破僵局而非讨好</div>
+                <div class="guide-subtitle">前15分钟决定整场对话的基调</div>
+              </div>
+              <span class="chunk-arrow">&#9660;</span>
+            </div>
+            <div class="guide-body">
+              <p style="font-size:13px;line-height:1.7;margin-bottom:12px;">
+                不要一上来就道歉或者问"你还在生气吗"——这会让你立刻进入讨好模式。开场应该是<strong>轻松但有诚意</strong>的：先当一个正常人，而不是一个等待审判的被告。
+              </p>
+              <div class="do-dont">
+                <div class="do-box">
+                  <strong>&#10003; 应该做</strong>
+                  &#8226; 提前到餐厅，选好位置，点好她喜欢的茶/饮品<br>
+                  &#8226; 见面时自然地打招呼，聊几句轻松的话题（路上堵不堵、今天课怎么样）<br>
+                  &#8226; 让她先点菜，但主动建议一两道你觉得好吃的<br>
+                  &#8226; 等菜的时候再自然过渡到正题
+                </div>
+                <div class="dont-box">
+                  <strong>&#10007; 不要做</strong>
+                  &#8226; 不要一坐下就说"我知道你很生气"<br>
+                  &#8226; 不要送贵重礼物试图"补偿"——会被解读为"用钱解决问题"<br>
+                  &#8226; 不要表现得过于紧张或严肃，这会给她压力<br>
+                  &#8226; 不要提前在微信上反复确认"你还来吗"
+                </div>
+              </div>
+              <div class="script-box">
+                <div class="script-label">参考话术 —— 自然过渡到正题</div>
+                "对了，上次你说有些话想和我说，今天我们可以好好聊聊。我准备好听了，你想从哪里开始都行。"<br><br>
+                <strong>关键：</strong>把话语权交给她，但用"我准备好听了"表明你的主动和诚意——而不是被动等待她"审问"你。
+              </div>
+            </div>
+          </div>
+
+          <!-- Guide 2: 倾听 -->
+          <div class="guide-card">
+            <div class="guide-header blue" onclick="toggleChunk(this)">
+              <span class="guide-icon">&#128066;</span>
+              <div class="guide-title-area">
+                <div class="guide-title">第二步：倾听 —— 听懂她真正在说什么</div>
+                <div class="guide-subtitle">Erin的愤怒背后是恐惧，恐惧背后是期望</div>
+              </div>
+              <span class="chunk-arrow">&#9660;</span>
+            </div>
+            <div class="guide-body">
+              <p style="font-size:13px;line-height:1.7;margin-bottom:12px;">
+                根据聊天记录，Erin的核心诉求可以分为<strong>三层</strong>：
+              </p>
+              <div class="guide-step">
+                <div class="step-num">表</div>
+                <div class="step-content">
+                  <strong>表面层 —— "你不够大方"</strong><br>
+                  520 vs 5200、前任对比、"和气也没财"。她表达的是对物质付出的不满。
+                </div>
+              </div>
+              <div class="guide-step">
+                <div class="step-num">中</div>
+                <div class="step-content">
+                  <strong>中间层 —— "你不够用心"</strong><br>
+                  钱只是载体，她真正在意的是：你有没有<strong>花心思</strong>在她身上？有没有主动为她做一些她没有开口要求的事？"付出"不等于"花钱"，而是"用心"。
+                </div>
+              </div>
+              <div class="guide-step">
+                <div class="step-num">深</div>
+                <div class="step-content">
+                  <strong>深层 —— "你会不会像前任一样"</strong><br>
+                  她被NPD前任深深伤害过。那个人用慷慨包装控制。她现在的矛盾是：既需要被用心对待来获得安全感，又害怕自己会重新陷入不健康的依赖。她在用"物质标准"来保护自己——因为这是最容易量化的指标。
+                </div>
+              </div>
+              <div class="do-dont">
+                <div class="do-box">
+                  <strong>&#10003; 倾听技巧</strong>
+                  &#8226; 她说话时放下手机，看着她<br>
+                  &#8226; 用"嗯"、"然后呢"、"我理解"来鼓励她继续说<br>
+                  &#8226; 不要在她说完之前就开始辩解<br>
+                  &#8226; 重复她的话来确认理解："你的意思是...对吗？"<br>
+                  &#8226; 允许沉默——不要急着填补每一个停顿
+                </div>
+                <div class="dont-box">
+                  <strong>&#10007; 避免的反应</strong>
+                  &#8226; "但是我已经..."——任何以"但是"开头的都是辩解<br>
+                  &#8226; "你也没有..."——反攻只会升级冲突<br>
+                  &#8226; "以后我会..."——空洞的未来承诺她已经免疫了<br>
+                  &#8226; "你前任那个是NPD啊我又不是"——直接对比只会激怒她<br>
+                  &#8226; 叹气、看手机、东张西望——非语言信号比语言更重要
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Guide 3: 回应 -->
+          <div class="guide-card">
+            <div class="guide-header purple" onclick="toggleChunk(this)">
+              <span class="guide-icon">&#128172;</span>
+              <div class="guide-title-area">
+                <div class="guide-title">第三步：回应 —— 真诚而非讨好</div>
+                <div class="guide-subtitle">她不需要你完美，她需要你真实</div>
+              </div>
+              <span class="chunk-arrow">&#9660;</span>
+            </div>
+            <div class="guide-body">
+              <p style="font-size:13px;line-height:1.7;margin-bottom:12px;">
+                听完她的想法后，你的回应决定了这段关系的走向。关键是<strong>承认而非辩解，坦诚而非画饼</strong>。但同时，你也有权利表达自己的感受和边界——健康的关系是双向的。
+              </p>
+
+              <div class="script-box">
+                <div class="script-label">参考框架 —— 回应她的核心关切</div>
+                <strong>第一部分：承认她的感受（不是认错，是共情）</strong><br>
+                "我听到了你说的。你觉得我在用心程度上做得不够，这让你没有安全感。这个感受是真实的，我不会否认它。"<br><br>
+                <strong>第二部分：坦诚自己的现状（不是借口，是事实）</strong><br>
+                "说实话，我现在经济上确实能力有限，这是事实。但我想说的是——用心不只是花钱。我想知道，除了物质之外，什么样的行为能让你感到被重视？我想具体地知道。"<br><br>
+                <strong>第三部分：表达自己的感受（不是指责，是对等）</strong><br>
+                "我也想坦诚跟你说——这两个月我一直在努力，但我有时候会觉得不管做什么都不太对。我不是在抱怨，我只是想让你知道我的感受也很真实。我希望我们是<strong>互相理解</strong>的，不是一个人一直追、一个人一直评判。"<br><br>
+                <strong>第四部分：提出具体方案（不是承诺，是行动）</strong><br>
+                "我想我们可以试着具体一点：你告诉我你最在意的三件事，我来做。不是以后，是这周就开始。同时我也希望你能给我一些正面反馈——让我知道什么是做对了的。这样我们都不用猜。"
+              </div>
+
+              <div class="do-dont">
+                <div class="do-box">
+                  <strong>&#10003; 有效的表达</strong>
+                  &#8226; 用"我感到..."而不是"你让我..."<br>
+                  &#8226; 承认问题但给出解决方案<br>
+                  &#8226; 问具体的问题而非泛泛表忠心<br>
+                  &#8226; 适当表达自己的需求——这不是自私，是对等<br>
+                  &#8226; "我可能做不到5200，但我能做到的是____"
+                </div>
+                <div class="dont-box">
+                  <strong>&#10007; 无效的表达</strong>
+                  &#8226; "我以后一定会赚很多钱" —— 画饼<br>
+                  &#8226; "你说的都对" —— 无原则讨好<br>
+                  &#8226; "我会改的" —— 不说改什么就等于没说<br>
+                  &#8226; "都是我的错" —— 如果不全是你的错，别这样说<br>
+                  &#8226; 任何俗语/鸡汤/大道理 —— 她已经明确讨厌这个
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Guide 4: 边界 -->
+          <div class="guide-card">
+            <div class="guide-header amber" onclick="toggleChunk(this)">
+              <span class="guide-icon">&#128737;</span>
+              <div class="guide-title-area">
+                <div class="guide-title">第四步：设定边界 —— 你也有权利说"不"</div>
+                <div class="guide-subtitle">爱一个人不等于接受所有条件</div>
+              </div>
+              <span class="chunk-arrow">&#9660;</span>
+            </div>
+            <div class="guide-body">
+              <p style="font-size:13px;line-height:1.7;margin-bottom:12px;">
+                根据PUA分析部分的发现，George在这段关系中处于<strong>长期讨好者</strong>的位置。这不健康——对你自己不健康，对关系本身也不健康。一个人永远在追、永远在迎合，最终会失去自我价值和吸引力。<strong>设定边界不是放弃，而是自尊。</strong>
+              </p>
+
+              <div class="analysis-box" style="border-left:3px solid #f59e0b;margin-bottom:14px;">
+                <div class="analysis-box-title">你需要在周二明确的底线</div>
+                <p>
+                  <strong>1. 关系需要双向：</strong>"我愿意为你付出，但我也需要感受到你对我的付出——不是物质上的，而是态度上的。比如不要动不动说'感光了'来施压。"<br><br>
+                  <strong>2. 标准需要合理：</strong>"你可以有你的标准，但我不接受被拿来和你前任比。那段关系是不健康的，用那个标准衡量我对我们都不公平。"<br><br>
+                  <strong>3. 沟通需要对等：</strong>"我希望你不高兴的时候能直接告诉我具体原因，而不是让我猜。我愿意改，但我需要知道改什么。"<br><br>
+                  <strong>4. 决定需要明确：</strong>"我很喜欢你，但我不想一直在'你还愿不愿意和我在一起'这个问题上反复。今天我们聊完，我希望能有一个明确的方向——不管是什么方向。"
+                </p>
+              </div>
+
+              <div class="script-box">
+                <div class="script-label">如果她说"你达不到我的标准"</div>
+                "我尊重你的标准，每个人都有自己的选择。但我想让你知道——我的价值不是由转账金额定义的。如果你觉得我现在的能力和我对你的用心都不够，那可能我们确实不太合适。这不是赌气，这是尊重——尊重你的选择，也尊重我自己。"<br><br>
+                <strong>这句话的力量在于：</strong>它打破了"George永远在追"的框架。当你不再无条件迎合时，Erin才会真正思考她是否愿意失去你。一个有底线的人比一个无条件讨好的人更有吸引力。
+              </div>
+            </div>
+          </div>
+
+          <!-- Guide 5: 行动 -->
+          <div class="guide-card">
+            <div class="guide-header green" onclick="toggleChunk(this)">
+              <span class="guide-icon">&#128296;</span>
+              <div class="guide-title-area">
+                <div class="guide-title">第五步：用行动代替语言 —— 周二之后的具体计划</div>
+                <div class="guide-subtitle">"不许画饼"——那就用事实说话</div>
+              </div>
+              <span class="chunk-arrow">&#9660;</span>
+            </div>
+            <div class="guide-body">
+              <p style="font-size:13px;line-height:1.7;margin-bottom:12px;">
+                如果周二的对话进展顺利，接下来<strong>一周内</strong>的行动比说一百句"我会改"更有效。以下是不花大钱但能让她感受到用心的具体行动：
+              </p>
+
+              <div class="guide-step">
+                <div class="step-num">1</div>
+                <div class="step-content">
+                  <strong>记住她说过的小事，然后做到</strong><br>
+                  她说"不吃香菜"——记住。她提到头疼——下次见面带个暖宝宝。她说课表被排了早9——早上发个"加油今天也辛苦啦"。这些<strong>不花钱但花心思</strong>的细节才是"用心"的证明。
+                </div>
+              </div>
+              <div class="guide-step">
+                <div class="step-num">2</div>
+                <div class="step-content">
+                  <strong>用你的专长为她创造价值</strong><br>
+                  你擅长摄影——给她拍一组好看的照片（她在意形象）。帮她的闺蜜也拍一次——她之前因为前任"请朋友吃饭"而感动，你可以用<strong>你的方式</strong>（技能而非金钱）做类似的事。
+                </div>
+              </div>
+              <div class="guide-step">
+                <div class="step-num">3</div>
+                <div class="step-content">
+                  <strong>制造惊喜而不是等她提要求</strong><br>
+                  她的核心抱怨之一是"没有感受到你在追我"。解法不是花更多钱，而是<strong>主动性</strong>——不等她问就安排：周末一起去你知道的那个海边秋千（她问过的地方），提前查好天气、准备好零食、拍好照片。用计划感代替临时起意。
+                </div>
+              </div>
+              <div class="guide-step">
+                <div class="step-num">4</div>
+                <div class="step-content">
+                  <strong>经济上做力所能及的小投入，但要有仪式感</strong><br>
+                  不需要5200。但可以：在特别的日子手写一张卡片+一束花（50块以内）；吃饭时主动付账不要犹豫；偶尔在她没预期的时候点一杯奶茶送到她楼下。<strong>关键不是金额而是频率和意外感</strong>——让她感受到"他总是在想着我"。
+                </div>
+              </div>
+              <div class="guide-step">
+                <div class="step-num">5</div>
+                <div class="step-content">
+                  <strong>减少消息量，提高每条消息的质量</strong><br>
+                  目前的聊天模式是：大量碎片化消息 + 你经常秒回。这会降低每次互动的"份量感"。试着：不要秒回每一条（但也别故意晾着），发消息时<strong>多说有内容的话</strong>（分享一篇有趣的文章、一个你看到想到她的瞬间），少发"嗯""好""哦"。
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Guide 6: 自我保护 -->
+          <div class="guide-card">
+            <div class="guide-header rose" onclick="toggleChunk(this)">
+              <span class="guide-icon">&#128165;</span>
+              <div class="guide-title-area">
+                <div class="guide-title">第六步：最坏情况 —— 如何体面止损</div>
+                <div class="guide-subtitle">如果周二的结果不理想</div>
+              </div>
+              <span class="chunk-arrow">&#9660;</span>
+            </div>
+            <div class="guide-body">
+              <p style="font-size:13px;line-height:1.7;margin-bottom:12px;">
+                不是每段关系都能走到最后，提前做好心理准备不是悲观而是成熟。如果出现以下情况，认真考虑是否应该<strong>保持尊严地退出</strong>：
+              </p>
+              <div class="analysis-box" style="border-left:3px solid #ef4444;margin-bottom:14px;">
+                <div class="analysis-box-title">止损信号</div>
+                <p>
+                  &#128308; 她在周二的对话中仍然只提要求，不做任何让步或承诺<br>
+                  &#128308; 她明确表示经济能力是她择偶的<strong>首要标准</strong><br>
+                  &#128308; 她继续用"前任如何如何"来贬低你的付出<br>
+                  &#128308; 对话结束后仍然没有明确的关系方向<br>
+                  &#128308; 你表达感受时她表现出不屑或嘲讽<br>
+                  &#128308; 你感到自己在"跪着"说话
+                </p>
+              </div>
+
+              <div class="script-box">
+                <div class="script-label">体面退出的方式</div>
+                "这两个月我很开心认识你，也很认真地对待这段关系。但我感觉我们对感情的期望可能真的不太一样。我不想让你觉得我不够好，也不想让自己一直在达不到标准的焦虑里。我觉得我们可以做朋友——但我需要先给自己一些空间。"<br><br>
+                <strong>然后：</strong>减少联系频率（不是拉黑，是淡出），把精力放回自己身上——学业、摄影、健身、社交。<strong>真正的吸引力来自一个过得好的人，而不是一个拼命追赶别人标准的人。</strong>
+              </div>
+
+              <div class="analysis-box" style="border-left:3px solid #22c55e;">
+                <div class="analysis-box-title">最后的话</div>
+                <p>
+                  无论周二的结果如何，记住一件事：<strong>你的价值不取决于另一个人是否选择你。</strong><br><br>
+                  你在这两个月里展现了耐心、包容、幽默和真诚——这些是真正珍贵的品质。如果Erin看不到这些，那不是你的损失，是她的。<br><br>
+                  一段好的感情应该让两个人都变得更好，而不是让一个人不断自我怀疑。不管结果如何，希望你在这段经历中学到的东西，能让你在下一段关系（或者这段关系的新篇章）中成为一个更好的人。<br><br>
+                  <strong>你值得被平等地对待。</strong>
+                </p>
+              </div>
+            </div>
+          </div>
+
         </div>
 
       </div>
