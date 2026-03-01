@@ -308,6 +308,274 @@ body {
 .load-sentinel {
   height: 1px;
 }
+
+/* View Toggle */
+.view-toggle {
+  display: inline-flex;
+  background: var(--border);
+  border-radius: 8px;
+  padding: 2px;
+  gap: 2px;
+}
+.view-toggle button {
+  background: transparent;
+  border: none;
+  padding: 6px 14px;
+  border-radius: 6px;
+  font-size: 13px;
+  cursor: pointer;
+  font-family: inherit;
+  color: var(--muted);
+  transition: all 0.2s;
+}
+.view-toggle button.active {
+  background: var(--accent);
+  color: #fff;
+  box-shadow: 0 1px 3px rgba(79,70,229,0.3);
+}
+
+/* Analysis Panel */
+.analysis-panel {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--bg);
+  margin-top: 8px;
+  margin-bottom: 8px;
+  padding: 20px;
+  -webkit-overflow-scrolling: touch;
+  display: none;
+}
+.analysis-panel::-webkit-scrollbar { width: 6px; }
+.analysis-panel::-webkit-scrollbar-thumb { background: #c1c1c1; border-radius: 3px; }
+
+.analysis-section { margin-bottom: 28px; }
+.analysis-section:last-child { margin-bottom: 0; }
+.section-title {
+  font-size: 18px;
+  font-weight: 700;
+  margin: 0 0 16px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.section-title .icon { font-size: 20px; }
+
+/* Trajectory */
+.trajectory {
+  background: var(--card);
+  border-radius: 14px;
+  padding: 20px;
+  border: 1px solid var(--border);
+  box-shadow: 0 2px 8px rgba(15,23,42,0.04);
+}
+.trajectory-bar {
+  position: relative;
+  height: 32px;
+  background: linear-gradient(90deg, #fee2e2, #fef3c7, #dcfce7, #dbeafe, #fce7f3);
+  border-radius: 16px;
+  margin: 12px 0;
+  overflow: visible;
+}
+.trajectory-marker {
+  position: absolute;
+  top: -4px;
+  width: 20px;
+  height: 40px;
+  border-radius: 10px;
+  background: var(--accent);
+  border: 3px solid #fff;
+  box-shadow: 0 2px 8px rgba(79,70,229,0.4);
+  transition: left 0.6s ease;
+}
+.trajectory-labels {
+  display: flex;
+  justify-content: space-between;
+  font-size: 11px;
+  color: var(--muted);
+  margin-top: 4px;
+}
+.trajectory-summary {
+  margin-top: 14px;
+  font-size: 14px;
+  line-height: 1.7;
+  color: var(--text);
+}
+.trajectory-stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 10px;
+  margin-top: 16px;
+}
+.stat-card {
+  background: var(--bg);
+  border-radius: 10px;
+  padding: 12px;
+  text-align: center;
+}
+.stat-value {
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--accent);
+}
+.stat-label {
+  font-size: 12px;
+  color: var(--muted);
+  margin-top: 2px;
+}
+
+/* Chunk Cards */
+.chunk-card {
+  background: var(--card);
+  border-radius: 14px;
+  border: 1px solid var(--border);
+  box-shadow: 0 2px 8px rgba(15,23,42,0.04);
+  margin-bottom: 14px;
+  overflow: hidden;
+  transition: box-shadow 0.2s;
+}
+.chunk-card:hover {
+  box-shadow: 0 4px 16px rgba(15,23,42,0.1);
+}
+.chunk-header {
+  padding: 16px 18px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.chunk-number {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: var(--accent);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 14px;
+  flex-shrink: 0;
+}
+.chunk-title-area { flex: 1; min-width: 0; }
+.chunk-title {
+  font-size: 15px;
+  font-weight: 600;
+  margin: 0;
+}
+.chunk-time {
+  font-size: 12px;
+  color: var(--muted);
+  margin-top: 2px;
+}
+.chunk-sentiment {
+  padding: 4px 10px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 600;
+  flex-shrink: 0;
+}
+.chunk-sentiment.positive { background: #dcfce7; color: #166534; }
+.chunk-sentiment.negative { background: #fee2e2; color: #991b1b; }
+.chunk-sentiment.mixed { background: #fef3c7; color: #92400e; }
+.chunk-sentiment.neutral { background: #f1f5f9; color: #475569; }
+.chunk-sentiment.tense { background: #fce7f3; color: #9d174d; }
+
+.chunk-arrow {
+  color: var(--muted);
+  transition: transform 0.2s;
+  flex-shrink: 0;
+  font-size: 16px;
+}
+.chunk-card.open .chunk-arrow { transform: rotate(180deg); }
+
+.chunk-body {
+  display: none;
+  padding: 0 18px 18px;
+  border-top: 1px solid var(--border);
+}
+.chunk-card.open .chunk-body { display: block; padding-top: 16px; }
+
+.chunk-analysis-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin-bottom: 14px;
+}
+@media (max-width: 600px) {
+  .chunk-analysis-row { grid-template-columns: 1fr; }
+}
+.analysis-box {
+  background: var(--bg);
+  border-radius: 10px;
+  padding: 12px;
+}
+.analysis-box-title {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 6px;
+}
+.analysis-box p {
+  margin: 0;
+  font-size: 13px;
+  line-height: 1.6;
+  color: var(--text);
+}
+.analysis-meter {
+  height: 6px;
+  background: var(--border);
+  border-radius: 3px;
+  overflow: hidden;
+  margin-top: 6px;
+}
+.analysis-meter-fill {
+  height: 100%;
+  border-radius: 3px;
+  transition: width 0.4s ease;
+}
+
+.chunk-quotes {
+  background: var(--bg);
+  border-radius: 10px;
+  padding: 12px;
+}
+.chunk-quotes-title {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--muted);
+  margin-bottom: 8px;
+}
+.chunk-quote {
+  font-size: 13px;
+  line-height: 1.5;
+  padding: 6px 0;
+  border-bottom: 1px solid var(--border);
+  color: var(--text);
+}
+.chunk-quote:last-child { border-bottom: none; }
+.chunk-quote .speaker {
+  font-weight: 600;
+  color: var(--accent);
+}
+.chunk-quote .speaker.erin { color: #e11d48; }
+
+.chunk-jump-btn {
+  margin-top: 12px;
+  padding: 6px 14px;
+  background: var(--accent);
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  font-size: 12px;
+  cursor: pointer;
+  font-family: inherit;
+}
+.chunk-jump-btn:hover { opacity: 0.9; }
 </style>
   </head>
   <body>
@@ -361,6 +629,10 @@ body {
           <span>2026-03-01 21:10:24</span>
         </div>
         <div class="controls">
+          <div class="view-toggle">
+            <button id="viewChat" class="active" onclick="switchView('chat')">Chat</button>
+            <button id="viewAnalysis" onclick="switchView('analysis')">Analysis</button>
+          </div>
           <input id="searchInput" type="search" placeholder="搜索消息..." />
           <input id="timeInput" type="datetime-local" />
           <button id="jumpBtn" type="button">跳转</button>
@@ -369,8 +641,380 @@ body {
           </div>
         </div>
       </div>
-      
+
       <div id="scrollContainer" class="scroll-container"></div>
+
+      <div id="analysisPanel" class="analysis-panel">
+
+        <!-- Overall Trajectory -->
+        <div class="analysis-section">
+          <div class="section-title"><span class="icon">&#128200;</span> Relationship Trajectory</div>
+          <div class="trajectory">
+            <div class="trajectory-bar">
+              <div class="trajectory-marker" style="left: calc(52% - 10px)"></div>
+            </div>
+            <div class="trajectory-labels">
+              <span>Distant</span>
+              <span>Tense</span>
+              <span>Neutral</span>
+              <span>Warm</span>
+              <span>Intimate</span>
+            </div>
+            <div class="trajectory-summary">
+              George is actively pursuing Erin with patience and care. Erin is interested but guarded &mdash; she&rsquo;s frustrated about an unresolved issue and testing his sincerity before committing further. The conversation ends at a <strong>critical inflection point</strong>: both agree to a face-to-face conversation (Tuesday dinner) that could define the relationship. Despite surface-level annoyance, her continued engagement and willingness to talk signals hope.
+            </div>
+            <div class="trajectory-stats">
+              <div class="stat-card">
+                <div class="stat-value">88</div>
+                <div class="stat-label">Messages</div>
+              </div>
+              <div class="stat-card">
+                <div class="stat-value">52/36</div>
+                <div class="stat-label">Erin / George</div>
+              </div>
+              <div class="stat-card">
+                <div class="stat-value">11</div>
+                <div class="stat-label">Voice Messages</div>
+              </div>
+              <div class="stat-card">
+                <div class="stat-value">~18h</div>
+                <div class="stat-label">Span</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Persona Profiles -->
+        <div class="analysis-section">
+          <div class="section-title"><span class="icon">&#128101;</span> Dynamic Profiles</div>
+          <div class="chunk-analysis-row">
+            <div class="analysis-box" style="border-left:3px solid var(--accent);">
+              <div class="analysis-box-title">George (Sender)</div>
+              <p><strong>Role:</strong> Pursuer / Initiator<br>
+              <strong>Style:</strong> Patient, accommodating, emotionally available. Proposes plans, offers rides, and consistently makes himself available. Quick to de-escalate tension with humor or sincerity. Shows genuine interest in her life (family, schedule, feelings).<br>
+              <strong>Key move:</strong> "我不会生气 你也别生气 我们都好好说话 坦诚沟通" &mdash; signals emotional maturity and willingness to work through conflict.</p>
+            </div>
+            <div class="analysis-box" style="border-left:3px solid #e11d48;">
+              <div class="analysis-box-title">Erin (Receiver)</div>
+              <p><strong>Role:</strong> Evaluator / Gatekeeper<br>
+              <strong>Style:</strong> Expressive (prefers voice messages), playful when comfortable, direct when annoyed. Sets boundaries firmly but stays engaged. Uses push-pull dynamics &mdash; rejects outings but continues chatting for hours.<br>
+              <strong>Key move:</strong> "晚上到家想想和你说吧" &mdash; despite claiming to have lost feelings, she&rsquo;s still willing to open up and communicate.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Conversation Chunks -->
+        <div class="analysis-section">
+          <div class="section-title"><span class="icon">&#128172;</span> Conversation Breakdown</div>
+
+          <!-- Chunk 1 -->
+          <div class="chunk-card" data-chunk="1">
+            <div class="chunk-header" onclick="toggleChunk(this)">
+              <div class="chunk-number">1</div>
+              <div class="chunk-title-area">
+                <div class="chunk-title">Dinner Planning &mdash; 约饭试探</div>
+                <div class="chunk-time">02:52 - 12:09 &middot; Messages 1-12</div>
+              </div>
+              <span class="chunk-sentiment positive">Positive</span>
+              <span class="chunk-arrow">&#9660;</span>
+            </div>
+            <div class="chunk-body">
+              <div class="chunk-analysis-row">
+                <div class="analysis-box">
+                  <div class="analysis-box-title">Dynamics</div>
+                  <p>George proposes dinner (Wednesday), Erin counter-proposes Tuesday &mdash; she has a preference but is receptive. She&rsquo;s exhausted from flying and sets a boundary ("先睡了"), which George respects warmly ("好好休息休息 不着急吃饭的"). Mutual willingness to meet signals baseline interest from both sides.</p>
+                </div>
+                <div class="analysis-box">
+                  <div class="analysis-box-title">Relationship Signal</div>
+                  <p>Both actively want to see each other. Erin&rsquo;s counter-proposal (not rejection) shows investment. George&rsquo;s patience and care ("不着急") builds trust. Early signs of a <strong>healthy push-pull</strong>.</p>
+                  <div class="analysis-meter"><div class="analysis-meter-fill" style="width:75%;background:#22c55e;"></div></div>
+                </div>
+              </div>
+              <div class="chunk-quotes">
+                <div class="chunk-quotes-title">Key Exchanges</div>
+                <div class="chunk-quote"><span class="speaker">George:</span> 那我看看周三定个晚饭啥的 如何</div>
+                <div class="chunk-quote"><span class="speaker erin">Erin:</span> 最好周二</div>
+                <div class="chunk-quote"><span class="speaker erin">Erin:</span> 我赶飞机太困了先睡了</div>
+                <div class="chunk-quote"><span class="speaker">George:</span> 好好休息休息 不着急吃饭的</div>
+              </div>
+              <button class="chunk-jump-btn" onclick="jumpToMsg(1)">View in Chat &#8594;</button>
+            </div>
+          </div>
+
+          <!-- Chunk 2 -->
+          <div class="chunk-card" data-chunk="2">
+            <div class="chunk-header" onclick="toggleChunk(this)">
+              <div class="chunk-number">2</div>
+              <div class="chunk-title-area">
+                <div class="chunk-title">Playful Sparring &mdash; 吃饭和休息冲突吗？</div>
+                <div class="chunk-time">13:10 - 13:29 &middot; Messages 13-17</div>
+              </div>
+              <span class="chunk-sentiment positive">Positive</span>
+              <span class="chunk-arrow">&#9660;</span>
+            </div>
+            <div class="chunk-body">
+              <div class="chunk-analysis-row">
+                <div class="analysis-box">
+                  <div class="analysis-box-title">Dynamics</div>
+                  <p>Erin wakes up and immediately teases George about his phrasing via voice messages &mdash; "好好休息休息和吃饭这两者冲突吗？" She&rsquo;s being cheeky and playful, comfortable enough to tease. George responds with emoji stickers. This is lighthearted banter that signals comfort.</p>
+                </div>
+                <div class="analysis-box">
+                  <div class="analysis-box-title">Relationship Signal</div>
+                  <p>Voice messages = higher intimacy (she wants him to hear her tone). Teasing = comfort and affection. Erin is engaged and enjoying the interaction. A strong <strong>rapport-building</strong> moment.</p>
+                  <div class="analysis-meter"><div class="analysis-meter-fill" style="width:80%;background:#22c55e;"></div></div>
+                </div>
+              </div>
+              <div class="chunk-quotes">
+                <div class="chunk-quotes-title">Key Exchanges</div>
+                <div class="chunk-quote"><span class="speaker erin">Erin:</span> &#127911; 好好休息休息和吃饭这两者冲突吗？</div>
+                <div class="chunk-quote"><span class="speaker erin">Erin:</span> &#127911; 我确实要好好休息休息，但是我每天都要吃饭呀。</div>
+                <div class="chunk-quote"><span class="speaker">George:</span> sorrrrry呀 我怕你觉得看到我会影响休息 &#128547;</div>
+              </div>
+              <button class="chunk-jump-btn" onclick="jumpToMsg(13)">View in Chat &#8594;</button>
+            </div>
+          </div>
+
+          <!-- Chunk 3 -->
+          <div class="chunk-card" data-chunk="3">
+            <div class="chunk-header" onclick="toggleChunk(this)">
+              <div class="chunk-number">3</div>
+              <div class="chunk-title-area">
+                <div class="chunk-title">Shared Frustration &mdash; 课表吐槽</div>
+                <div class="chunk-time">14:08 - 15:47 &middot; Messages 18-34</div>
+              </div>
+              <span class="chunk-sentiment positive">Positive</span>
+              <span class="chunk-arrow">&#9660;</span>
+            </div>
+            <div class="chunk-body">
+              <div class="chunk-analysis-row">
+                <div class="analysis-box">
+                  <div class="analysis-box-title">Dynamics</div>
+                  <p>George prompts Erin to check her new schedule. She vents about getting an unwanted early class and waitlist issues. George validates her frustration and shares his own Monash experience ("排课表都很贱的"), creating a sense of solidarity. He also gives practical advice about waitlisting. She mentions having a headache &mdash; vulnerability signal.</p>
+                </div>
+                <div class="analysis-box">
+                  <div class="analysis-box-title">Relationship Signal</div>
+                  <p>Emotional support + shared experience = bonding. She turns to him to vent, which shows trust. He doesn&rsquo;t dismiss her feelings ("应该有机会", "加上比不加好"). A <strong>deepening connection</strong> through shared student life struggles.</p>
+                  <div class="analysis-meter"><div class="analysis-meter-fill" style="width:72%;background:#22c55e;"></div></div>
+                </div>
+              </div>
+              <div class="chunk-quotes">
+                <div class="chunk-quotes-title">Key Exchanges</div>
+                <div class="chunk-quote"><span class="speaker erin">Erin:</span> &#127911; 莫名其妙给我排了一个早时...</div>
+                <div class="chunk-quote"><span class="speaker">George:</span> 排课表都很贱的 不按照先后顺序</div>
+                <div class="chunk-quote"><span class="speaker erin">Erin:</span> 对啊！气死了啊</div>
+                <div class="chunk-quote"><span class="speaker">George:</span> 加上比不加好</div>
+              </div>
+              <button class="chunk-jump-btn" onclick="jumpToMsg(18)">View in Chat &#8594;</button>
+            </div>
+          </div>
+
+          <!-- Chunk 4 -->
+          <div class="chunk-card" data-chunk="4">
+            <div class="chunk-header" onclick="toggleChunk(this)">
+              <div class="chunk-number">4</div>
+              <div class="chunk-title-area">
+                <div class="chunk-title">The Swing Invitation &mdash; 秋千与接送</div>
+                <div class="chunk-time">17:54 - 18:07 &middot; Messages 35-45</div>
+              </div>
+              <span class="chunk-sentiment mixed">Mixed</span>
+              <span class="chunk-arrow">&#9660;</span>
+            </div>
+            <div class="chunk-body">
+              <div class="chunk-analysis-row">
+                <div class="analysis-box">
+                  <div class="analysis-box-title">Dynamics</div>
+                  <p>Erin asks about a swing spot by the beach that George knows. He provides the exact location and offers practical info (less crowded at night). Then offers "接你去" (I&rsquo;ll pick you up). She probes "今晚吗?" and he eagerly agrees. George is making himself fully available; Erin is <strong>gathering information</strong> but not committing.</p>
+                </div>
+                <div class="analysis-box">
+                  <div class="analysis-box-title">Relationship Signal</div>
+                  <p>She&rsquo;s asking about a place he showed her &mdash; thinking about shared memories. George jumps at the chance to see her. But Erin&rsquo;s "今晚吗?" feels more like surprised clarification than acceptance. A <strong>tipping point</strong> moment that could go either way.</p>
+                  <div class="analysis-meter"><div class="analysis-meter-fill" style="width:60%;background:#eab308;"></div></div>
+                </div>
+              </div>
+              <div class="chunk-quotes">
+                <div class="chunk-quotes-title">Key Exchanges</div>
+                <div class="chunk-quote"><span class="speaker erin">Erin:</span> 那个能挡秋千的地方在哪</div>
+                <div class="chunk-quote"><span class="speaker">George:</span> North Road Foreshore Reserve Playground</div>
+                <div class="chunk-quote"><span class="speaker">George:</span> 接你去</div>
+                <div class="chunk-quote"><span class="speaker erin">Erin:</span> 今晚吗</div>
+                <div class="chunk-quote"><span class="speaker">George:</span> 好呀</div>
+              </div>
+              <button class="chunk-jump-btn" onclick="jumpToMsg(35)">View in Chat &#8594;</button>
+            </div>
+          </div>
+
+          <!-- Chunk 5 -->
+          <div class="chunk-card" data-chunk="5">
+            <div class="chunk-header" onclick="toggleChunk(this)">
+              <div class="chunk-number">5</div>
+              <div class="chunk-title-area">
+                <div class="chunk-title">Emoji Wars &mdash; 表情包大战</div>
+                <div class="chunk-time">18:24 - 18:42 &middot; Messages 46-57</div>
+              </div>
+              <span class="chunk-sentiment mixed">Mixed</span>
+              <span class="chunk-arrow">&#9660;</span>
+            </div>
+            <div class="chunk-body">
+              <div class="chunk-analysis-row">
+                <div class="analysis-box">
+                  <div class="analysis-box-title">Dynamics</div>
+                  <p>Erin rejects the outing with a blunt "不要" but immediately sends a playful sticker, softening the rejection. This triggers a fun exchange where George &ldquo;steals&rdquo; her emoji stickers. She protests ("你不要偷我表情"), he doubles down ("就偷"). Despite the rejection, the conversation <strong>stays alive and playful</strong>.</p>
+                </div>
+                <div class="analysis-box">
+                  <div class="analysis-box-title">Relationship Signal</div>
+                  <p>Classic <strong>push-pull</strong>: she says no to the outing but keeps engaging warmly. The emoji war is flirtatious territory. She cares enough about her &ldquo;sticker identity&rdquo; with him to protest. George reads the room well &mdash; doesn&rsquo;t push the outing, pivots to fun.</p>
+                  <div class="analysis-meter"><div class="analysis-meter-fill" style="width:55%;background:#eab308;"></div></div>
+                </div>
+              </div>
+              <div class="chunk-quotes">
+                <div class="chunk-quotes-title">Key Exchanges</div>
+                <div class="chunk-quote"><span class="speaker erin">Erin:</span> 不要</div>
+                <div class="chunk-quote"><span class="speaker erin">Erin:</span> 你不要偷我表情</div>
+                <div class="chunk-quote"><span class="speaker">George:</span> 不敢偷你的表情 只能用一些不对版的表情</div>
+                <div class="chunk-quote"><span class="speaker">George:</span> 就偷</div>
+              </div>
+              <button class="chunk-jump-btn" onclick="jumpToMsg(46)">View in Chat &#8594;</button>
+            </div>
+          </div>
+
+          <!-- Chunk 6 -->
+          <div class="chunk-card" data-chunk="6">
+            <div class="chunk-header" onclick="toggleChunk(this)">
+              <div class="chunk-number">6</div>
+              <div class="chunk-title-area">
+                <div class="chunk-title">Family &amp; Movie Night &mdash; 妈妈和电影</div>
+                <div class="chunk-time">18:48 - 19:01 &middot; Messages 58-65</div>
+              </div>
+              <span class="chunk-sentiment neutral">Neutral</span>
+              <span class="chunk-arrow">&#9660;</span>
+            </div>
+            <div class="chunk-body">
+              <div class="chunk-analysis-row">
+                <div class="analysis-box">
+                  <div class="analysis-box-title">Dynamics</div>
+                  <p>George asks about her parents &mdash; showing interest in her family life. She shares that her mom came but is leaving tomorrow. She mentions a movie going until midnight. George immediately offers to go to the swings after her movie, still persistent. He&rsquo;s adapting his approach, accommodating her schedule.</p>
+                </div>
+                <div class="analysis-box">
+                  <div class="analysis-box-title">Relationship Signal</div>
+                  <p>Asking about family = deeper interest beyond surface attraction. Erin shares personal info readily. George&rsquo;s flexibility ("可以等你看完去") shows commitment. However, his persistence starts to <strong>push boundaries</strong> that Erin hasn&rsquo;t opened.</p>
+                  <div class="analysis-meter"><div class="analysis-meter-fill" style="width:50%;background:#94a3b8;"></div></div>
+                </div>
+              </div>
+              <div class="chunk-quotes">
+                <div class="chunk-quotes-title">Key Exchanges</div>
+                <div class="chunk-quote"><span class="speaker">George:</span> 诶 叔叔阿姨跟你一起来了吗</div>
+                <div class="chunk-quote"><span class="speaker erin">Erin:</span> 就我妈</div>
+                <div class="chunk-quote"><span class="speaker erin">Erin:</span> 我今天要看电影到十二点多</div>
+                <div class="chunk-quote"><span class="speaker">George:</span> 可以等你看完去 你明天没课的话</div>
+              </div>
+              <button class="chunk-jump-btn" onclick="jumpToMsg(58)">View in Chat &#8594;</button>
+            </div>
+          </div>
+
+          <!-- Chunk 7 -->
+          <div class="chunk-card" data-chunk="7">
+            <div class="chunk-header" onclick="toggleChunk(this)">
+              <div class="chunk-number">7</div>
+              <div class="chunk-title-area">
+                <div class="chunk-title">The Unspoken Issue &mdash; 还没聊那个事情</div>
+                <div class="chunk-time">19:02 - 19:26 &middot; Messages 66-77</div>
+              </div>
+              <span class="chunk-sentiment tense">Tense</span>
+              <span class="chunk-arrow">&#9660;</span>
+            </div>
+            <div class="chunk-body">
+              <div class="chunk-analysis-row">
+                <div class="analysis-box">
+                  <div class="analysis-box-title">Dynamics</div>
+                  <p>The conversation takes a sharp turn. Erin makes it clear: "我又没说要和你去" and "我们还没聊这个事情呢" &mdash; there&rsquo;s a significant unresolved issue that must be addressed before she&rsquo;ll spend time with him. She&rsquo;s drawing a hard boundary. George pivots well &mdash; suggests Tuesday dinner to "好好聊聊". He also shows vulnerability with "好的 吃的少了字打的不全 sry" (using hunger as a cute excuse for a typo).</p>
+                </div>
+                <div class="analysis-box">
+                  <div class="analysis-box-title">Relationship Signal</div>
+                  <p>This is the <strong>crux of the conversation</strong>. Erin reveals there&rsquo;s a prerequisite conversation (likely DTR or addressing something George did). Her willingness to have this talk = she hasn&rsquo;t given up. George&rsquo;s calm proposal for a proper sit-down shows he takes her seriously. A <strong>relationship-defining moment</strong> is being scheduled.</p>
+                  <div class="analysis-meter"><div class="analysis-meter-fill" style="width:40%;background:#f59e0b;"></div></div>
+                </div>
+              </div>
+              <div class="chunk-quotes">
+                <div class="chunk-quotes-title">Key Exchanges</div>
+                <div class="chunk-quote"><span class="speaker erin">Erin:</span> 我又没说要和你去 &#128578;</div>
+                <div class="chunk-quote"><span class="speaker erin">Erin:</span> &#127911; 我们还没聊这个事情呢，才不会跟你去。</div>
+                <div class="chunk-quote"><span class="speaker erin">Erin:</span> &#127911; 每天要上早9了...等聊完这事情再说。</div>
+                <div class="chunk-quote"><span class="speaker">George:</span> 好的&#128076; 我们周二可以好好聊聊 周二晚饭可以吗</div>
+                <div class="chunk-quote"><span class="speaker erin">Erin:</span> 知道了</div>
+              </div>
+              <button class="chunk-jump-btn" onclick="jumpToMsg(66)">View in Chat &#8594;</button>
+            </div>
+          </div>
+
+          <!-- Chunk 8 -->
+          <div class="chunk-card" data-chunk="8">
+            <div class="chunk-header" onclick="toggleChunk(this)">
+              <div class="chunk-number">8</div>
+              <div class="chunk-title-area">
+                <div class="chunk-title">Emotional Eruption &mdash; 情绪爆发与坦诚</div>
+                <div class="chunk-time">19:32 - 20:32 &middot; Messages 78-88</div>
+              </div>
+              <span class="chunk-sentiment tense">Tense</span>
+              <span class="chunk-arrow">&#9660;</span>
+            </div>
+            <div class="chunk-body">
+              <div class="chunk-analysis-row">
+                <div class="analysis-box">
+                  <div class="analysis-box-title">Dynamics</div>
+                  <p>Erin escalates emotionally via voice messages. She calls his sticker ugly, accuses him of acting cute/pitiful, and declares "我现在对你已经彻底感光了" (I&rsquo;ve completely lost feelings). She demands he "收动物" (behave) on Tuesday. George asks how she sees him now. She hesitates to say, afraid he&rsquo;ll get angry. George responds with the most mature line in the chat: "我不会生气 你也别生气 我们都好好说话 坦诚沟通." She agrees to share her thoughts later but insists: "我怎么能不生气 已经把我气死了."</p>
+                </div>
+                <div class="analysis-box">
+                  <div class="analysis-box-title">Relationship Signal</div>
+                  <p>Despite the dramatic language, Erin&rsquo;s behavior reveals deep investment &mdash; you don&rsquo;t get this angry at someone you&rsquo;re indifferent to. Her "彻底感光了" is expressive frustration, not actual detachment (she keeps talking). George&rsquo;s calm emotional intelligence here is <strong>critical</strong> &mdash; it may be his strongest move. The conversation ends with her agreeing to open up later, a <strong>hopeful sign wrapped in tension</strong>.</p>
+                  <div class="analysis-meter"><div class="analysis-meter-fill" style="width:35%;background:#ef4444;"></div></div>
+                </div>
+              </div>
+              <div class="chunk-quotes">
+                <div class="chunk-quotes-title">Key Exchanges</div>
+                <div class="chunk-quote"><span class="speaker erin">Erin:</span> &#127911; 撒娇...我现在对你已经彻底感光了。</div>
+                <div class="chunk-quote"><span class="speaker erin">Erin:</span> &#127911; 你最好是周二可以收动物。</div>
+                <div class="chunk-quote"><span class="speaker">George:</span> 我现在大概是个什么观</div>
+                <div class="chunk-quote"><span class="speaker erin">Erin:</span> &#127911; 你现在我觉得我要真说了，你不是一气啊...</div>
+                <div class="chunk-quote"><span class="speaker">George:</span> 我不会生气 你也别生气 我们都好好说话 坦诚沟通</div>
+                <div class="chunk-quote"><span class="speaker erin">Erin:</span> 我怎么能不生气 已经把我气死了</div>
+              </div>
+              <button class="chunk-jump-btn" onclick="jumpToMsg(78)">View in Chat &#8594;</button>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Verdict -->
+        <div class="analysis-section">
+          <div class="section-title"><span class="icon">&#127919;</span> Overall Assessment</div>
+          <div class="trajectory">
+            <div class="chunk-analysis-row">
+              <div class="analysis-box" style="border-left:3px solid #22c55e;">
+                <div class="analysis-box-title">Positive Indicators</div>
+                <p>&#10003; Erin initiates topics and shares personal details (family, schedule, feelings)<br>
+                &#10003; Voice messages show comfort and intimacy<br>
+                &#10003; She agreed to Tuesday dinner / serious conversation<br>
+                &#10003; Playful teasing throughout indicates rapport<br>
+                &#10003; Her anger = emotional investment, not indifference<br>
+                &#10003; George shows emotional maturity and patience</p>
+              </div>
+              <div class="analysis-box" style="border-left:3px solid #ef4444;">
+                <div class="analysis-box-title">Risk Factors</div>
+                <p>&#10007; Unresolved issue creating significant tension<br>
+                &#10007; Erin explicitly says she&rsquo;s &ldquo;lost feelings&rdquo;<br>
+                &#10007; George&rsquo;s eagerness could be perceived as pressure<br>
+                &#10007; She sets boundaries he sometimes pushes past<br>
+                &#10007; High emotional stakes for Tuesday&rsquo;s conversation<br>
+                &#10007; Her frustration may have been building over time</p>
+              </div>
+            </div>
+            <div class="trajectory-summary" style="background: var(--bg); padding: 14px; border-radius: 10px; margin-top: 14px;">
+              <strong>Verdict:</strong> This is a relationship at a crossroads. George needs to listen more than talk on Tuesday. Erin needs to feel heard and see genuine change, not just words. The fact that she&rsquo;s still engaging after 88 messages, sending voice messages, and agreeing to meet is the strongest signal that this is salvageable &mdash; but Tuesday&rsquo;s dinner is make-or-break.
+            </div>
+          </div>
+        </div>
+
+      </div>
       
     </div>
     
@@ -653,6 +1297,51 @@ body {
       })
 
       updateCount()
+
+      // View switching
+      function switchView(view) {
+        const chat = document.getElementById('scrollContainer');
+        const analysis = document.getElementById('analysisPanel');
+        const btnChat = document.getElementById('viewChat');
+        const btnAnalysis = document.getElementById('viewAnalysis');
+        if (view === 'analysis') {
+          chat.style.display = 'none';
+          analysis.style.display = 'block';
+          btnChat.classList.remove('active');
+          btnAnalysis.classList.add('active');
+        } else {
+          chat.style.display = '';
+          analysis.style.display = 'none';
+          btnChat.classList.add('active');
+          btnAnalysis.classList.remove('active');
+        }
+      }
+      window.switchView = switchView;
+
+      // Chunk card toggle
+      function toggleChunk(headerEl) {
+        headerEl.parentElement.classList.toggle('open');
+      }
+      window.toggleChunk = toggleChunk;
+
+      // Jump to message from analysis
+      function jumpToMsg(msgIndex) {
+        switchView('chat');
+        // Find the message by index in the data
+        const idx = allData.findIndex(item => item.i === msgIndex);
+        if (idx === -1) return;
+        // Ensure rendered
+        while (renderer.rendered <= idx) {
+          renderer.renderBatch();
+        }
+        const el = renderer.list.children[idx];
+        if (el) {
+          el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          el.classList.add('highlight');
+          setTimeout(() => el.classList.remove('highlight'), 2000);
+        }
+      }
+      window.jumpToMsg = jumpToMsg;
     </script>
     </div><!-- end mainContent -->
   </body>
